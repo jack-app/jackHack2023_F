@@ -61,5 +61,5 @@ $ pip install Flask
 
 ```
 $ cd backend
-$ python main.py
+$ python app.py
 ```
