@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pathToPhaser = path.join(__dirname, '/node_modules/phaser');
 const phaser = path.join(pathToPhaser, 'dist/phaser.js');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -9,8 +10,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Production',
+      template: 'src/index.html'
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/assets/', to: 'assets/' }
+      ]
+    })
   ],
   output: {
     filename: '[name].bundle.js',
@@ -24,15 +30,7 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      {
-        test: /phaser\.js$/,
-        use: {
-          loader: 'expose-loader',
-          options: {
-            exposes: 'Phaser',
-          },
-        },
-      },
+      
     ],
   },
   resolve: {
