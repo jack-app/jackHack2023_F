@@ -13,7 +13,7 @@ export class TitleScene extends Phaser.Scene {
 
       // 画面を埋めるようなZoneを作成
       const zone = this.add.zone(width/2, height/2, width, height);
-
+        
       // 点滅させる
       const blink =this.tweens.add({
         targets: rect,

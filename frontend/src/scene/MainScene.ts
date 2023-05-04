@@ -59,7 +59,7 @@ export class MainScene extends Phaser.Scene {
     };
 
     const dialoxBox = new DialogBox(this, dialogBoxConfig);
-
+    
     // タイムラインプレイヤーの作成
     const timelinePlayer = new TimelinePlayer(this, dialoxBox, textStyle);
 

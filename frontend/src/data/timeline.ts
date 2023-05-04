@@ -7,62 +7,21 @@ const actor = 'Gucci';
 
 export const timelineData: Timelines = {
   start: [
-    {
-      type: 'setBackground',
-      x: 400,
-      y: 200,
-      key: 'line',
-      scaleX: 0.3,
-      scaleY: 0.3,
-    },
-    { type: 'dialog', text: 'ピロン！(Lineの着信音)  ▼' },
-    {
-      type: 'dialog',
-      text: '急用以外連絡してこないで、、だと、、 ▼',
-      actorName: 'あなた',
-    },
-    {
-      type: 'dialog',
-      text: 'ふざけんなー！！ 俺の何がだめなんだ・・・ ▼',
-      actorName: 'あなた',
-    },
-    {
-      type: 'dialog',
-      text: 'うるさいわね！じゃじゃ猫ちゃん！！ ▼',
-      actorName: '???',
-    },
-    { type: 'dialog', text: 'うわ！誰だお前！ ▼', actorName: 'あなた' },
+    {type: 'setBackground', x: 400, y: 200, key: 'line',scaleX: 0.3, scaleY: 0.3},
+    {type: 'dialog', text: 'ピロン！(Lineの着信音)  ▼  Enterで進む'},
+    {type: 'dialog', text: '急用以外連絡してこないで、、だと、、 ▼', actorName: 'あなた'},
+    {type: 'dialog', text: 'ふざけんなー！！ 俺の何がだめなんだ・・・ ▼', actorName: 'あなた'},
+    {type: 'dialog', text: 'うるさいわね！じゃじゃ猫ちゃん！！ ▼', actorName: '???'},
+    {type: 'dialog', text: 'うわ！誰だお前！ ▼',actorName:'あなた'},
     // できるならここで曲を流す
-    {
-      type: 'addForeground',
-      x: 120,
-      y: 300,
-      key: 'actor1',
-      scaleX: 0.5,
-      scaleY: 0.5,
-    },
-    {
-      type: 'dialog',
-      text: `私は２．５次元おロマンティックマナー講師の${actor}よ！ ▼`,
-      actorName: actor,
-    },
-    { type: 'dialog', text: ' え？まろんちっく？ ▼', actorName: 'あなた' },
-    {
-      type: 'dialog',
-      text: 'ロマンティック！おじさん構文はロマンティックの対極よ！！水と油 ▼',
-      actorName: actor,
-    },
-    {
-      type: 'dialog',
-      text: 'いまから場面別におロマンティックマナー講座を開講するわ、ついてきなさい！ ▼',
-      actorName: actor,
-    },
-    {
-      type: 'dialog',
-      text: '（・・・導入が無理やりだな） ▼',
-      actorName: 'あなた',
-    },
-    { type: 'timelineTransition', timelineID: 'stage1' },
+    {type: 'playSound'},
+    {type: 'addForeground', x: 120, y: 300, key: 'actor1',scaleX: 0.5, scaleY: 0.5},
+    {type: 'dialog', text: `私は２．５次元おロマンティックマナー講師の${actor}よ！ ▼`, actorName: actor},
+    {type: 'dialog', text: ' え？まろんちっく？ ▼', actorName:'あなた' },
+    {type: 'dialog', text: 'ロマンティック！おじさん構文はロマンティックの対極よ！！水と油 ▼', actorName: actor},
+    {type: 'dialog', text: 'いまから場面別におロマンティックマナー講座を開講するわ、ついてきなさい！ ▼', actorName: actor},
+    {type: 'dialog', text: '（・・・導入が無理やりだな） ▼', actorName:'あなた'},
+    {type: 'timelineTransition', timelineID: 'stage1'}
   ],
   //stage1
   stage1: [

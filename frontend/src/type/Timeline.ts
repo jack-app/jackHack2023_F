@@ -45,6 +45,10 @@ type SceneTransitionEvent = {
   data?: object;
 };
 
+type  PlaySoundEvent = {
+    type: 'playSound',
+}
+
 // セリフ入力イベント
 type InputDialogEvent = {
   type: 'inputDialog';
@@ -59,4 +63,5 @@ export type Timeline = (
   | TimelineTransitionEvent
   | SceneTransitionEvent
   | InputDialogEvent
+  | PlaySoundEvent
 )[];
