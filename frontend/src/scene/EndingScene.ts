@@ -14,7 +14,7 @@ export class EndingScene extends Phaser.Scene {
       
       this.game.sound.stopByKey('sound');
       this.add.image(width/2, height/2, 'romantic').setScale(0.18, 0.18);
-      this.add.image(width/2, height/2-80, 'actor').setScale(0.18, 0.18);
+      this.add.image(width/2, height/2-80, 'actor1').setScale(0.7, 0.7);
       this.add.text(width/2, height/2-250, 'RESULT').setOrigin(0.5);
   
       const textStyle: Phaser.Types.GameObjects.Text.TextStyle={
@@ -40,7 +40,7 @@ export class EndingScene extends Phaser.Scene {
   
       // テキストの設定
       dialogBox.setText('君の点数は10点だ… ');
-      dialogBox.setActorNameText('Namazu');
+      dialogBox.setActorNameText('Guuci');
   
       // DialogBoxの表示
       this.add.existing(dialogBox);
@@ -54,6 +54,3 @@ export class EndingScene extends Phaser.Scene {
       });
     }
 }
-
-
-  

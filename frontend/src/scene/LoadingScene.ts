@@ -16,17 +16,18 @@ export class LoadingScene extends Phaser.Scene {
   
       // アセットをロード（一度ロードしたアセットは他のシーンでも使用可）
       this.load.image('line', 'assets/line.jpg');
-      this.load.image('actor', 'assets/actor.png');
+      this.load.image('actor1', 'assets/actor1.png');
+      this.load.image('actor2', 'assets/actor2.png');
+      this.load.image('actor3', 'assets/actor3.png');
+      this.load.image('logo', 'assets/logo.png');
       this.load.image('romantic', 'assets/romantic.jpg');
       this.load.audio('sound', 'assets/sound.mp3');
       this.load.image('street', 'assets/street.jpg');
-      this.load.image('hina', 'assets/hinatyan.jpg');
+      this.load.image('hina', 'assets/hina.png');
 
       this.load.image('school', 'assets/school.jpg');
-      this.load.image('hina2', 'assets/hina2.jpg');
+      this.load.image('hina2', 'assets/hina2.png');
       this.load.image('star', 'assets/star.jpg');
-      this.load.image('imo', 'assets/imokenpi.jpg');
-      this.load.image('namazu', 'assets/namazu.png');
 
   
       // アセットのロードが完了したらTitleSceneに遷移
