@@ -49,12 +49,12 @@ Scene は各自、./src/scenes の中に作ってください！
 
 ### 始めの準備（初回のみ）
 
-Flask をインストールするために必要です。
+もろもろをインストールするために必要です。
 下記コマンドを順に実行してください。
 
 ```
 $ cd backend
-$ pip install Flask
+$ pip install -r requirements.txt
 ```
 
 ### ローカルサーバーの立て方
