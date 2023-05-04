@@ -11,21 +11,32 @@ export class TimelinePlayer {
 
   private timeline?: Timeline;
   private timelineIndex = 0;
+  private inputFlg = false;
 
   private sound?: Phaser.Sound.BaseSound;
 
-  constructor(private scene: Phaser.Scene, private dialogBox: DialogBox, private textStyle: Phaser.Types.GameObjects.Text.TextStyle={}) {
+  constructor(
+    private scene: Phaser.Scene, 
+    private dialogBox: DialogBox, 
+    private textStyle: Phaser.Types.GameObjects.Text.TextStyle={}) 
+    {
     // 背景レイヤー・前景レイヤー・UIレイヤーをコンテナを使って表現
     this.backgroundLayer = this.scene.add.container(0, 0);
     this.foregroundLayer = this.scene.add.container(0, 0);
-    this.scene.add.existing(this.dialogBox);  // ダイアログボックスは前景レイヤーとUIレイヤーの間に配置
+    this.scene.add.existing(this.dialogBox); // ダイアログボックスは前景レイヤーとUIレイヤーの間に配置
     this.uiLayer = this.scene.add.container(0, 0);
 
     // クリック領域(hitArea)を画面全体に設定
     const { width, height } = this.scene.game.canvas;
-    this.hitArea = new Phaser.GameObjects.Zone(this.scene, width/2, height/2, width, height);
+    this.hitArea = new Phaser.GameObjects.Zone(
+      this.scene,
+      width / 2,
+      height / 2,
+      width,
+      height,
+    );
     this.hitArea.setInteractive({
-      useHandCursor: true
+      useHandCursor: true,
     });
 
     // エンターでnext()を実行
@@ -46,13 +57,24 @@ export class TimelinePlayer {
     this.timeline = timeline;
     this.next();
   }
-  
+
   // 背景画像をセット
-  private setBackground(x:number, y:number, texture:string, scaleX: number, scaleY: number) {
+  private setBackground(
+    x: number,
+    y: number,
+    texture: string,
+    scaleX: number,
+    scaleY: number,
+  ) {
     // 背景レイヤーの子を全て削除
     this.backgroundLayer.removeAll();
     // 背景画像のオブジェクトを作成
-    const backgroundImage = new Phaser.GameObjects.Image(this.scene, x, y, texture);
+    const backgroundImage = new Phaser.GameObjects.Image(
+      this.scene,
+      x,
+      y,
+      texture,
+    );
     // 背景画像の表示サイズ変更
     backgroundImage.setScale(scaleX, scaleY);
     // 背景レイヤーに画像オブジェクトを配置
@@ -68,9 +90,20 @@ export class TimelinePlayer {
   }
 
   // 前景画像を追加
-  private addForeground(x:number, y:number, texture:string,scaleX: number, scaleY: number) {
+  private addForeground(
+    x: number,
+    y: number,
+    texture: string,
+    scaleX: number,
+    scaleY: number,
+  ) {
     // 前景画像のオブジェクトを作成
-    const foregroundImage = new Phaser.GameObjects.Image(this.scene, x, y, texture);
+    const foregroundImage = new Phaser.GameObjects.Image(
+      this.scene,
+      x,
+      y,
+      texture,
+    );
     // 背景画像の表示サイズ変更
     foregroundImage.setScale(scaleX, scaleY);
     // 前景レイヤーに画像オブジェクトを配置
@@ -93,11 +126,23 @@ export class TimelinePlayer {
       return;
     }
 
+    // inputFlgがtrueの場合、テキスト取得＆APIたたく
+    // 次のタイムライン実行前に処理
+    const element = document.getElementById(
+      'input-text',
+    ) as HTMLInputElement | null;
+    if (this.inputFlg) {
+      const inputText = element.value;
+      console.log(inputText);
+      element.style.display = 'none';
+      element.value = '';
+    }
+
     // タイムラインのイベントを取得してから、timelineIndexをインクリメント
     const timelineEvent = this.timeline[this.timelineIndex++];
 
     switch (timelineEvent.type) {
-      case 'dialog':  // ダイアログイベント
+      case 'dialog': // ダイアログイベント
         if (timelineEvent.actorName) {
           // actorNameが設定されていたら名前を表示
           this.dialogBox.setActorNameText(timelineEvent.actorName);
@@ -114,30 +159,50 @@ export class TimelinePlayer {
         break;
         
       case 'setBackground':  // 背景設定イベント
-        this.setBackground(timelineEvent.x, timelineEvent.y, timelineEvent.key,timelineEvent.scaleX,timelineEvent.scaleY);
+        this.setBackground(
+            timelineEvent.x, 
+            timelineEvent.y, 
+            timelineEvent.key,
+            timelineEvent.scaleX,
+            timelineEvent.scaleY
+        );
         this.next();  // すぐに次のタイムラインを実行する
         break;
 
-      case 'addForeground':  // 前景追加イベント
-        this.addForeground(timelineEvent.x, timelineEvent.y, timelineEvent.key,timelineEvent.scaleX,timelineEvent.scaleY);
-        this.next();  // すぐに次のタイムラインを実行する
+      case 'addForeground': // 前景追加イベント
+        this.addForeground(
+          timelineEvent.x,
+          timelineEvent.y,
+          timelineEvent.key,
+          timelineEvent.scaleX,
+          timelineEvent.scaleY,
+        );
+        this.next(); // すぐに次のタイムラインを実行する
         break;
 
-      case 'clearForeground':  // 前景クリアイベント
+      case 'clearForeground': // 前景クリアイベント
         this.clearForeground();
-        this.next();  // すぐに次のタイムラインを実行する
+        this.next(); // すぐに次のタイムラインを実行する
         break;
 
-      case 'timelineTransition':  // タイムライン遷移イベント
+      case 'timelineTransition': // タイムライン遷移イベント
         // シーンをリスタートし、指定のタイムラインを実行する
         // restart()の引数がシーンのinit()の引数に渡される
         this.scene.scene.restart({ timelineID: timelineEvent.timelineID });
         break;
 
-      case 'sceneTransition':  // シーン遷移イベント
+      case 'sceneTransition': // シーン遷移イベント
         // 指定のシーンに遷移する
         // start()の第2引数がシーンのinit()の引数に渡される
         this.scene.scene.start(timelineEvent.key, timelineEvent.data);
+        break;
+
+      case 'inputDialog': // セリフ入力イベント
+        // セリフ入力欄が表示される
+        // inputFlgがtrueになり、textareaが追加される
+        // 次のシーン読み込み前に判定処理入る(Flask)
+        element.style.display = 'block';
+        this.inputFlg = true;
         break;
 
       default:
