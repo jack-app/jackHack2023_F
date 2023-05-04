@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask,jsonify
 from evaluate_text import reference_text
 from matching import ratingComment,matchingScore
+import json
 
 app = Flask(__name__)
 
@@ -15,7 +16,11 @@ def get_text(text):
   count = reference_text(text)
   score = matchingScore(count)
   comment = ratingComment(count)
-  return {"score":score, "comment":comment}
+  params = {
+    'score': score,
+    'comment': comment,
+  }
+  return jsonify(params)
   
 
 if __name__ == '__main__':
