@@ -8,15 +8,14 @@ app = Flask(__name__)
 def index():
   return 'Hello World'
 
-@app.route('/text/<text>', methods=["GET"])
+@app.route('/api/evaluate/<text>', methods=["GET"])
 def get_text(text):
   #文字列(text)を受け取る
   #コメントとスコアを返す
   count = reference_text(text)
-  score = matchingScore(int(count))
-  comment = ratingComment(int(count))
-  print(comment,score) #動作確認用
-  return comment,score
+  score = matchingScore(count)
+  comment = ratingComment(count)
+  return {"score":score, "comment":comment}
   
 
 if __name__ == '__main__':
