@@ -1,4 +1,6 @@
 from flask import Flask
+from evaluate_text import reference_text
+from matching import ratingComment
 
 app = Flask(__name__)
 
@@ -9,7 +11,9 @@ def index():
 @app.route('/text/<text_id>', methods=["GET"])
 def get_text(text_id):
   #text_idとlist参照してコメントと点数返したい
-  return '%sを参照する' % text_id
+  count = reference_text(text_id)
+  comment = ratingComment(int(count))
+  return '%s' % comment
 
 if __name__ == '__main__':
   app.debug = True
