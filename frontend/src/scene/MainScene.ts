@@ -28,10 +28,10 @@ export class MainScene extends Phaser.Scene {
   }
 
   create() {
-    const sound = this.sound.add('sound', { loop: true });
-    sound.play({
-      volume: 0.5,
-    });
+    // const sound = this.sound.add('sound', { loop: true });
+    // sound.play({
+    //     volume: 0.1
+    //   });
 
     if (!this.timeline) {
       return;

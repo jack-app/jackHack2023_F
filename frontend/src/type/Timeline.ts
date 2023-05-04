@@ -13,6 +13,8 @@ type SetBackgroundEvent = {
   x: number;
   y: number;
   key: string;
+  scaleX: number;
+  scaleY: number;
 };
 
 // 前景追加イベント
@@ -21,6 +23,8 @@ type AddForegroundEvent = {
   x: number;
   y: number;
   key: string;
+  scaleX: number;
+  scaleY: number;
 };
 
 // 前景クリアイベント
