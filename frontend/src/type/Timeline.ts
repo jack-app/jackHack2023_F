@@ -1,48 +1,58 @@
-
-
 // タイムラインイベントの型付け
 
 // ダイアログ表示イベント
 type DialogEvent = {
-  type: 'dialog',
-  text: string,
-  actorName?: string
+  type: 'dialog';
+  text: string;
+  actorName?: string;
 };
 
 // 背景設定イベント
 type SetBackgroundEvent = {
-  type: 'setBackground',
-  x: number,
-  y: number,
-  key: string
+  type: 'setBackground';
+  x: number;
+  y: number;
+  key: string;
 };
 
 // 前景追加イベント
 type AddForegroundEvent = {
-  type: 'addForeground',
-  x: number,
-  y: number,
-  key: string
+  type: 'addForeground';
+  x: number;
+  y: number;
+  key: string;
 };
 
 // 前景クリアイベント
 type ClearForegroundEvent = {
-  type: 'clearForeground'
+  type: 'clearForeground';
 };
 
 // タイムライン遷移イベント
 type TimelineTransitionEvent = {
-  type: 'timelineTransition',
-  timelineID: string
+  type: 'timelineTransition';
+  timelineID: string;
 };
 
 // シーン遷移イベント
 type SceneTransitionEvent = {
-  type: 'sceneTransition',
-  key: string,
-  data?: object
+  type: 'sceneTransition';
+  key: string;
+  data?: object;
 };
 
+// セリフ入力イベント
+type InputDialogEvent = {
+  type: 'inputDialog';
+};
 
 // Timelineはイベントの配列
-export type Timeline = (DialogEvent|SetBackgroundEvent|AddForegroundEvent|ClearForegroundEvent|TimelineTransitionEvent|SceneTransitionEvent)[];
+export type Timeline = (
+  | DialogEvent
+  | SetBackgroundEvent
+  | AddForegroundEvent
+  | ClearForegroundEvent
+  | TimelineTransitionEvent
+  | SceneTransitionEvent
+  | InputDialogEvent
+)[];
