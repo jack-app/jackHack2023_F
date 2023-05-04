@@ -1,6 +1,6 @@
 from flask import Flask
 from evaluate_text import reference_text
-from matching import ratingComment
+from matching import ratingComment,matchingScore
 
 app = Flask(__name__)
 
@@ -8,12 +8,16 @@ app = Flask(__name__)
 def index():
   return 'Hello World'
 
-@app.route('/text/<text_id>', methods=["GET"])
-def get_text(text_id):
-  #text_idとlist参照してコメントと点数返したい
-  count = reference_text(text_id)
+@app.route('/text/<text>', methods=["GET"])
+def get_text(text):
+  #文字列(text)を受け取る
+  #コメントとスコアを返す
+  count = reference_text(text)
+  score = matchingScore(int(count))
   comment = ratingComment(int(count))
-  return '%s' % comment
+  print(comment,score) #動作確認用
+  return comment,score
+  
 
 if __name__ == '__main__':
   app.debug = True
