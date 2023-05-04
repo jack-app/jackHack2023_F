@@ -47,6 +47,9 @@ type SceneTransitionEvent = {
   data?: object
 };
 
+type  PlaySoundEvent = {
+    type: 'playSound',
+}
 
 // Timelineはイベントの配列
-export type Timeline = (DialogEvent|SetBackgroundEvent|AddForegroundEvent|ClearForegroundEvent|TimelineTransitionEvent|SceneTransitionEvent)[];
+export type Timeline = (DialogEvent|SetBackgroundEvent|AddForegroundEvent|ClearForegroundEvent|TimelineTransitionEvent|SceneTransitionEvent|PlaySoundEvent)[];

@@ -12,6 +12,8 @@ export class TimelinePlayer {
   private timeline?: Timeline;
   private timelineIndex = 0;
 
+  private sound?: Phaser.Sound.BaseSound;
+
   constructor(private scene: Phaser.Scene, private dialogBox: DialogBox, private textStyle: Phaser.Types.GameObjects.Text.TextStyle={}) {
     // 背景レイヤー・前景レイヤー・UIレイヤーをコンテナを使って表現
     this.backgroundLayer = this.scene.add.container(0, 0);
@@ -26,10 +28,14 @@ export class TimelinePlayer {
       useHandCursor: true
     });
 
-    // hitAreaをクリックしたらnext()を実行
-    this.hitArea.on('pointerdown', () => {
-      this.next();
+    // エンターでnext()を実行
+    this.scene.input.keyboard.on("keydown-ENTER", () => {
+        this.next();
     });
+    // hitAreaをクリックしたらnext()を実行
+    // this.hitArea.on('pointerdown', () => {
+    //   this.next();
+    // });
 
     // hitAreaをUIレイヤーに追加
     this.uiLayer.add(this.hitArea);
@@ -53,6 +59,14 @@ export class TimelinePlayer {
     this.backgroundLayer.add(backgroundImage);
   }
 
+//   音楽再生
+  private playSound(){
+    const sound = this.scene.sound.add('sound', { loop: true });
+    sound.play({
+        volume: 0.1
+      });
+  }
+
   // 前景画像を追加
   private addForeground(x:number, y:number, texture:string,scaleX: number, scaleY: number) {
     // 前景画像のオブジェクトを作成
@@ -68,6 +82,7 @@ export class TimelinePlayer {
     // 前景レイヤーの子を全て削除
     this.foregroundLayer.removeAll();
   }
+
 
   // 次のタイムラインを実行
   private next() {
@@ -92,7 +107,12 @@ export class TimelinePlayer {
         }
         this.dialogBox.setText(timelineEvent.text);
         break;
-
+    
+        case 'playSound':// 音楽再生イベント
+            this.playSound();
+            this.next();
+        break;
+        
       case 'setBackground':  // 背景設定イベント
         this.setBackground(timelineEvent.x, timelineEvent.y, timelineEvent.key,timelineEvent.scaleX,timelineEvent.scaleY);
         this.next();  // すぐに次のタイムラインを実行する
