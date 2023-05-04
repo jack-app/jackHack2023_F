@@ -54,6 +54,3 @@ export class EndingScene extends Phaser.Scene {
       });
     }
 }
-
-
-  
