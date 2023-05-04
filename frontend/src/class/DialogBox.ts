@@ -48,7 +48,6 @@ export type DialogBoxConfig = {
       this.actorNameText.setOrigin(0, 0.5);  // 原点を左中に設定
       this.actorNameText.setVisible(false);  // 初期状態では非表示
       this.add(this.actorNameText);  // Containerへの追加
-      
       this.padding = padding;
     }
   
