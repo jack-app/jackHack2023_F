@@ -18,4 +18,4 @@ def reference_text(text: str):
   ]
   matched_num_sum = sum(matched_num_list)
 
-  return(str(matched_num_sum))
+  return(int(matched_num_sum))
