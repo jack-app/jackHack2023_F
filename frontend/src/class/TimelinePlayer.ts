@@ -40,25 +40,25 @@ export class TimelinePlayer {
     this.timeline = timeline;
     this.next();
   }
-
+  
   // 背景画像をセット
-  private setBackground(x:number, y:number, texture:string) {
+  private setBackground(x:number, y:number, texture:string, scaleX: number, scaleY: number) {
     // 背景レイヤーの子を全て削除
     this.backgroundLayer.removeAll();
     // 背景画像のオブジェクトを作成
     const backgroundImage = new Phaser.GameObjects.Image(this.scene, x, y, texture);
     // 背景画像の表示サイズ変更
-        // backgroundImage.setScale(0.18, 0.);
+    backgroundImage.setScale(scaleX, scaleY);
     // 背景レイヤーに画像オブジェクトを配置
     this.backgroundLayer.add(backgroundImage);
   }
 
   // 前景画像を追加
-  private addForeground(x:number, y:number, texture:string) {
+  private addForeground(x:number, y:number, texture:string,scaleX: number, scaleY: number) {
     // 前景画像のオブジェクトを作成
     const foregroundImage = new Phaser.GameObjects.Image(this.scene, x, y, texture);
     // 背景画像の表示サイズ変更
-    foregroundImage.setScale(0.18, 0.18);
+    foregroundImage.setScale(scaleX, scaleY);
     // 前景レイヤーに画像オブジェクトを配置
     this.foregroundLayer.add(foregroundImage);
   }
@@ -94,12 +94,12 @@ export class TimelinePlayer {
         break;
 
       case 'setBackground':  // 背景設定イベント
-        this.setBackground(timelineEvent.x, timelineEvent.y, timelineEvent.key);
+        this.setBackground(timelineEvent.x, timelineEvent.y, timelineEvent.key,timelineEvent.scaleX,timelineEvent.scaleY);
         this.next();  // すぐに次のタイムラインを実行する
         break;
 
       case 'addForeground':  // 前景追加イベント
-        this.addForeground(timelineEvent.x, timelineEvent.y, timelineEvent.key);
+        this.addForeground(timelineEvent.x, timelineEvent.y, timelineEvent.key,timelineEvent.scaleX,timelineEvent.scaleY);
         this.next();  // すぐに次のタイムラインを実行する
         break;
 

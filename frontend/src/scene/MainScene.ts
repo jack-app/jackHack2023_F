@@ -14,7 +14,7 @@ export class MainScene extends Phaser.Scene {
     // this.scene.restart()の第1引数もしくは
     // this.scene.start()の第2引数に指定されたオブジェクトがdataに渡される
     const timelineID = data.timelineID || 'start';
-    
+
     if (!(timelineID in timelineData)) {
       console.error(`[ERROR] タイムラインID[${timelineID}]は登録されていません`);
       // 登録されていないタイムラインIDが指定されていたらタイトルシーンに遷移する
@@ -26,10 +26,10 @@ export class MainScene extends Phaser.Scene {
   }
 
   create() {
-    const sound = this.sound.add('sound', { loop: true });
-    sound.play({
-        volume: 0.5
-      });
+    // const sound = this.sound.add('sound', { loop: true });
+    // sound.play({
+    //     volume: 0.1
+    //   });
 
     if (!this.timeline) {
       return;
