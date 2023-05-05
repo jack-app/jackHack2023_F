@@ -1,6 +1,7 @@
 import { Timeline } from '../type/Timeline';
 import { DialogBox } from './DialogBox';
 
+
 // ストーリー進行の画面を制御するクラス
 
 export class TimelinePlayer {
@@ -9,6 +10,8 @@ export class TimelinePlayer {
   private uiLayer: Phaser.GameObjects.Container;
   private hitArea: Phaser.GameObjects.Zone;
   private  blackBox?: Phaser.GameObjects.Rectangle;
+  private score: number;
+  private comment: string;
 
   private timeline?: Timeline;
   private timelineIndex = 0;
@@ -125,6 +128,9 @@ export class TimelinePlayer {
 
     // inputFlgがtrueの場合、テキスト取得＆APIたたく
     // 次のタイムライン実行前に処理
+
+    let totalScore = 0;
+    
     const element = document.getElementById(
       'input-text',
     ) as HTMLInputElement | null;
@@ -133,16 +139,18 @@ export class TimelinePlayer {
       console.log(inputText);
       element.style.display = 'none';
       element.value = '';
-      let score: number;
-      let comment: string;
+
       this.inputFlg=false;
       fetch(`/api/evaluate/1/${inputText}`)
       .then(response => response.json())
       .then(data => {
-        score = data.score;
-        comment = data.comment;
-        console.log(`Score: ${score}, Comment: ${comment}`);
-  });
+        this.score = data.score;
+        this.comment = data.comment;
+        totalScore += this.score;
+        console.log(`Score: ${this.score}, Comment: ${this.comment}`);
+        console.log(`Total Score: ${totalScore}`);
+        console.log(totalScore);
+    });
       
     }
 

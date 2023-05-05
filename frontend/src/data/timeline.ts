@@ -5,6 +5,9 @@ import { Timelines } from '../type/Timelines';
 // 俳優名の設定
 const actor = 'Gucci';
 
+
+
+
 export const timelineData: Timelines = {
   start: [
     {type: 'setBackground', x: 400, y: 200, key: 'line',scaleX: 0.3, scaleY: 0.3},
@@ -81,7 +84,7 @@ export const timelineData: Timelines = {
     {type: 'inputDialog'},
     {type: 'clearBox'},
     // 判定結果を返す
-    { type: 'dialog', text: `採点結果を返す ▼`, actorName: actor },
+    { type: 'dialog', text: `80点! なかなかやればできるじゃない。あなたは磨きがいがある子猫ちゃんよ！ ▼`, actorName: actor },
     { type: 'dialog', text: '・・・ ▼', actorName: 'あなた' },
     { type: 'timelineTransition', timelineID: 'stage2' },
   ],
@@ -136,7 +139,7 @@ export const timelineData: Timelines = {
     },
     { type: 'dialog', text: 'ちょっとこっちこようか  ▼', actorName: '先生' },
     // 判定結果を返す
-    { type: 'dialog', text: `判定結果を返す ▼`, actorName: actor },
+    { type: 'dialog', text: `0点！ひど過ぎる！ひどすぎるからカエル化じゃなくてナマズ化するわ！ナマズ化現象！ ▼`, actorName: actor },
     { type: 'timelineTransition', timelineID: 'stage3' },
   ],
   stage3: [
@@ -181,7 +184,7 @@ export const timelineData: Timelines = {
     {type: 'inputDialog'},
     {type: 'clearBox'},
     // 判定結果を返す
-    { type: 'dialog', text: `採点結果を返す ▼`, actorName: actor },
+    { type: 'dialog', text: `80点！超おロマンティックじゃない！ ▼`, actorName: actor },
     {
       type: 'dialog',
       text: 'これでロマンティック講座はおしまいよ！\n あなたは少しでもおロマンティック人に近づけたかしら！！ ▼',

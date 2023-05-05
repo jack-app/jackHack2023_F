@@ -7,6 +7,8 @@ export type DialogBoxConfig = {
     margin?: number,
     textStyle?: Phaser.Types.GameObjects.Text.TextStyle
   };
+
+
     //ダイアログボックスを設定するための型定義
   
   // Phaser.GameObjects.Containerを継承してDialogBoxを作成

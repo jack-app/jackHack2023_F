@@ -34,9 +34,7 @@ export class EndingScene extends Phaser.Scene {
       const dialogBox = new DialogBox(this, dialogBoxConfig);
 
       // テキストの設定
-      const score = 100;
-      const text = "";
-      dialogBox.setText(`君の点数は ${score} 点だ… \n ${text} `);
+      dialogBox.setText(`160点だ！"私が教えることはもう何もないわ。あなたは立派なおロマン人（ちゅ）よ！"`);
 
       // DialogBoxの表示
       this.add.existing(dialogBox);
