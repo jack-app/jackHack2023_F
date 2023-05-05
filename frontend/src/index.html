@@ -1,18 +1,94 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
-      integrity="sha256-7VVaJ5GDwFQiLIc+eNksQLUSSY5JNZtqv9o2BI8UGYg="
-      crossorigin="anonymous"
-    />
-    <title>テスト</title>
-    <script src="dist/bundle.js"></script>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>おロマンティックマナー講座</title>
+
+    <!-- 以下はCSS -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      header {
+        background-color: #fbbbd6;
+        height: 80px;
+        box-shadow: 0px 2px 4px #d9d9d9;
+        margin-bottom: 20px;
+        display: flex;
+      }
+
+      .header-contents {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-left: 30px;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      main {
+        margin-top: 60px;
+      }
+
+      #game-app {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      #game-app > canvas {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #input-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        display: none;
+        z-index: 100;
+        width: 500px;
+        height: 250px;
+      }
+
+      /* footer{
+        margin-top: 30px;
+        bottom: 0;
+        background-color: #fbbbd6;
+        height: 100px;
+        width: 100%;
+        position: absolute;
+    } */
+    </style>
   </head>
+
   <body>
-    <div id="game"></div>
+    <header>
+      <div class="header-contents">
+        <div class="title">
+          <h2>おロマンティックマナー講座</h2>
+          <p>feat. 2.5次元俳優</p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="game-app">
+        <textarea id="input-text" placeholder="あなたなら何と言う？" maxlength="50"></textarea>
+      </div>
+    </main>
+    <footer></footer>
   </body>
 </html>
