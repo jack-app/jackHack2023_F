@@ -133,8 +133,15 @@ export class TimelinePlayer {
       console.log(inputText);
       element.style.display = 'none';
       element.value = '';
-      const x = fetch(`/api/evaluate/1/${inputText}`);
-      console.log(x);
+      let score: number;
+      let comment: string;
+      fetch(`/api/evaluate/1/${inputText}`)
+      .then(response => response.json())
+      .then(data => {
+        score = data.score;
+        comment = data.comment;
+        console.log(`Score: ${score}, Comment: ${comment}`);
+  });
       
     }
 
