@@ -133,6 +133,8 @@ export class TimelinePlayer {
       console.log(inputText);
       element.style.display = 'none';
       element.value = '';
+      fetch("https://jackhack2023-ff.onrender.com/api/evaluate/1/inputText")
+      
     }
 
 
