@@ -135,6 +135,7 @@ export class TimelinePlayer {
       element.value = '';
       let score: number;
       let comment: string;
+      this.inputFlg=false;
       fetch(`/api/evaluate/1/${inputText}`)
       .then(response => response.json())
       .then(data => {
