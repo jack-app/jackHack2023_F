@@ -56,8 +56,9 @@
 
       #input-text {
         position: absolute;
-        top: 50%;
-        left: 25%;
+        left: 0;
+        right: 0;
+        margin: auto;
         display: none;
         z-index: 100;
         width: 500px;
@@ -86,7 +87,7 @@
     </header>
     <main>
       <div id="game-app">
-        <textarea id="input-text" placeholder="あなたなら何と言う？"></textarea>
+        <textarea id="input-text" placeholder="あなたなら何と言う？" maxlength="50"></textarea>
       </div>
     </main>
     <footer></footer>

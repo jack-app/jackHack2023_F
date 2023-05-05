@@ -13,7 +13,6 @@ export const timelineData: Timelines = {
     {type: 'dialog', text: 'ふざけんなー！！ 俺の何がだめなんだ・・・ ▼', actorName: 'あなた'},
     {type: 'dialog', text: 'うるさいわね！じゃじゃ猫ちゃん！！ ▼', actorName: '???'},
     {type: 'dialog', text: 'うわ！誰だお前！ ▼',actorName:'あなた'},
-    // できるならここで曲を流す
     {type: 'playSound'},
     {type: 'addForeground', x: 120, y: 300, key: 'actor1',scaleX: 0.5, scaleY: 0.5},
     {type: 'dialog', text: `私は２．５次元おロマンティックマナー講師の${actor}よ！ ▼`, actorName: actor},
@@ -79,10 +78,10 @@ export const timelineData: Timelines = {
       text: 'ロマンティックに「おはよう」を言いなさい！ ▼',
       actorName: actor,
     },
-    // ここでプレイヤーが入力
-    { type: 'dialog', text: 'プレイヤーが入力 ▼', actorName: 'あなた' },
+    {type: 'inputDialog'},
+    {type: 'clearBox'},
     // 判定結果を返す
-    { type: 'dialog', text: '採点結果を返す ▼', actorName: actor },
+    { type: 'dialog', text: `採点結果を返す ▼`, actorName: actor },
     { type: 'dialog', text: '・・・ ▼', actorName: 'あなた' },
     { type: 'timelineTransition', timelineID: 'stage2' },
   ],
@@ -128,8 +127,8 @@ export const timelineData: Timelines = {
       text: 'なにぼけっとしてんの！はやくフォロー入れなさいよ！ ▼',
       actorName: actor,
     },
-    // ここでプレイヤーが入力
-    { type: 'dialog', text: 'プレイヤーが入力 ▼', actorName: 'あなた' },
+    {type: 'inputDialog'},
+    {type: 'clearBox'},
     {
       type: 'dialog',
       text: 'きゃーーー！きもちわるいー！ ▼',
@@ -137,7 +136,7 @@ export const timelineData: Timelines = {
     },
     { type: 'dialog', text: 'ちょっとこっちこようか  ▼', actorName: '先生' },
     // 判定結果を返す
-    { type: 'dialog', text: '判定結果を返す ▼', actorName: actor },
+    { type: 'dialog', text: `判定結果を返す ▼`, actorName: actor },
     { type: 'timelineTransition', timelineID: 'stage3' },
   ],
   stage3: [
@@ -179,9 +178,10 @@ export const timelineData: Timelines = {
       actorName: actor,
     },
     // ここでプレイヤーが入力
-    { type: 'dialog', text: 'プレイヤーが入力  ▼', actorName: 'あなた' },
+    {type: 'inputDialog'},
+    {type: 'clearBox'},
     // 判定結果を返す
-    { type: 'dialog', text: '採点結果を返す ▼', actorName: actor },
+    { type: 'dialog', text: `採点結果を返す ▼`, actorName: actor },
     {
       type: 'dialog',
       text: 'これでロマンティック講座はおしまいよ！\n あなたは少しでもおロマンティック人に近づけたかしら！！ ▼',
