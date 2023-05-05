@@ -54,6 +54,10 @@ type InputDialogEvent = {
   type: 'inputDialog';
 };
 
+type ClearBoxEvent= {
+    type:'clearBox';
+}
+
 // Timelineはイベントの配列
 export type Timeline = (
   | DialogEvent
@@ -64,4 +68,5 @@ export type Timeline = (
   | SceneTransitionEvent
   | InputDialogEvent
   | PlaySoundEvent
+  | ClearBoxEvent
 )[];

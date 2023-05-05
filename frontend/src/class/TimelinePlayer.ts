@@ -8,6 +8,7 @@ export class TimelinePlayer {
   private foregroundLayer: Phaser.GameObjects.Container;
   private uiLayer: Phaser.GameObjects.Container;
   private hitArea: Phaser.GameObjects.Zone;
+  private  blackBox?: Phaser.GameObjects.Rectangle;
 
   private timeline?: Timeline;
   private timelineIndex = 0;
@@ -43,10 +44,7 @@ export class TimelinePlayer {
     this.scene.input.keyboard.on("keydown-ENTER", () => {
         this.next();
     });
-    // hitAreaをクリックしたらnext()を実行
-    // this.hitArea.on('pointerdown', () => {
-    //   this.next();
-    // });
+
 
     // hitAreaをUIレイヤーに追加
     this.uiLayer.add(this.hitArea);
@@ -116,7 +114,6 @@ export class TimelinePlayer {
     this.foregroundLayer.removeAll();
   }
 
-
   // 次のタイムラインを実行
   private next() {
     if (!this.timeline) {
@@ -136,7 +133,11 @@ export class TimelinePlayer {
       console.log(inputText);
       element.style.display = 'none';
       element.value = '';
+      fetch("https://jackhack2023-ff.onrender.com/api/evaluate/1/inputText")
+      
     }
+
+
 
     // タイムラインのイベントを取得してから、timelineIndexをインクリメント
     const timelineEvent = this.timeline[this.timelineIndex++];
@@ -203,8 +204,24 @@ export class TimelinePlayer {
         // 次のシーン読み込み前に判定処理入る(Flask)
         element.style.display = 'block';
         this.inputFlg = true;
-        break;
+        const { width, height } = this.scene.game.canvas;
+        // 背景用の黒い四角形を作成
+        this.blackBox = this.scene.add.rectangle(width/2, height/2, width, height, 0x000000, 0.7);
+        // ダイアログボックスを前面に表示
+        this.dialogBox.setDepth(this.blackBox.depth + 1);
+        // シーンに追加
+        this.scene.add.existing(this.blackBox);
+        // フォーカスを当てるため、入力ボックスをタイムラインプレイヤーに追加する必要があります。
+        this.uiLayer.add(this.dialogBox);
 
+        break;
+    
+        case 'clearBox':
+            if (this.blackBox) {
+                this.blackBox.destroy();
+                this.blackBox = undefined;
+              }
+        break;    
       default:
         break;
     }
