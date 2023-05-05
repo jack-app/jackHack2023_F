@@ -1,12 +1,10 @@
 import * as Phaser from 'phaser';
-import { Scenes } from './scene';  
-
-
+import { Scenes } from './scene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  
-  scene: Scenes ,
+
+  scene: Scenes,
   scale: {
     mode: Phaser.Scale.FIT,
     width: 800,
@@ -14,6 +12,5 @@ const config: Phaser.Types.Core.GameConfig = {
     parent: 'game-app',
   },
 };
-
 
 new Phaser.Game(config);

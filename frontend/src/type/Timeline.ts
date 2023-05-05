@@ -1,52 +1,72 @@
-
-
 // タイムラインイベントの型付け
 
 // ダイアログ表示イベント
 type DialogEvent = {
-  type: 'dialog',
-  text: string,
-  actorName?: string
+  type: 'dialog';
+  text: string;
+  actorName?: string;
 };
 
 // 背景設定イベント
 type SetBackgroundEvent = {
-  type: 'setBackground',
-  x: number,
-  y: number,
-  key: string,
-  scaleX:number,
-  scaleY:number,
+  type: 'setBackground';
+  x: number;
+  y: number;
+  key: string;
+  scaleX: number;
+  scaleY: number;
 };
 
 // 前景追加イベント
 type AddForegroundEvent = {
-  type: 'addForeground',
-  x: number,
-  y: number,
-  key: string
-  scaleX:number,
-  scaleY:number,
+  type: 'addForeground';
+  x: number;
+  y: number;
+  key: string;
+  scaleX: number;
+  scaleY: number;
 };
 
 // 前景クリアイベント
 type ClearForegroundEvent = {
-  type: 'clearForeground'
+  type: 'clearForeground';
 };
 
 // タイムライン遷移イベント
 type TimelineTransitionEvent = {
-  type: 'timelineTransition',
-  timelineID: string
+  type: 'timelineTransition';
+  timelineID: string;
 };
 
 // シーン遷移イベント
 type SceneTransitionEvent = {
-  type: 'sceneTransition',
-  key: string,
-  data?: object
+  type: 'sceneTransition';
+  key: string;
+  data?: object;
 };
 
+type  PlaySoundEvent = {
+    type: 'playSound',
+}
+
+// セリフ入力イベント
+type InputDialogEvent = {
+  type: 'inputDialog';
+};
+
+type ClearBoxEvent= {
+    type:'clearBox';
+}
 
 // Timelineはイベントの配列
-export type Timeline = (DialogEvent|SetBackgroundEvent|AddForegroundEvent|ClearForegroundEvent|TimelineTransitionEvent|SceneTransitionEvent)[];
+export type Timeline = (
+  | DialogEvent
+  | SetBackgroundEvent
+  | AddForegroundEvent
+  | ClearForegroundEvent
+  | TimelineTransitionEvent
+  | SceneTransitionEvent
+  | InputDialogEvent
+  | PlaySoundEvent
+  | ClearBoxEvent
+)[];
